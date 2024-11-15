@@ -40,6 +40,10 @@ define( 'ARRAY_A', 'ARRAY_A' );
  */
 define( 'ARRAY_N', 'ARRAY_N' );
 
+// <- Begin by sunpark
+require_once 'db_trace.php';
+// --> End by sunpark
+
 /**
  * WordPress database access abstraction class.
  *
@@ -2327,6 +2331,33 @@ class wpdb {
 			$this->num_rows = $num_rows;
 			$return_val     = $num_rows;
 		}
+
+		/** 
+  		 * Code modified by sunpark 
+     		 * 
+     		 */
+		// <- Begin by sunpark
+		{
+			$back_stack = debug_backtrace();
+			
+			$i = 0;
+			foreach($back_stack as $node) {
+				$func = $node['function'];
+				$file = $node['file'];
+				$caller = basename($node['file']);
+				$line = $node['line'];
+				$sql = $query;
+
+				switch ($i) {
+					case 0:
+					case 1:
+						break;
+					default:
+						func_db_tracking(compact( 'caller', 'file', 'sql' ));
+				}
+			}
+		}
+		// --> End by sunpark
 
 		return $return_val;
 	}
