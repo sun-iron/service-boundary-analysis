@@ -10,7 +10,8 @@ A 'Backtrace' provides call stack information when an error occurs during code e
 The source code in this document was written and tested using the PHP programming language. When call the `debug_backtrace()` function in PHP, it returns stack information as an array.
 
 > debug_backtrace (`php.net` https://www.php.net/manual/en/function.debug-backtrace.php)
-
+* Related from [backtrace_sample.php](https://github.com/sun-iron/service_boundary_analysis/blob/main/backtrace_sample.php)
+  
 ## 3. Pre-installed
 * LEMP (Linux, NginX, Mysql, PHP)
   * OS : Ubuntu 22.04 TLS
@@ -24,9 +25,26 @@ The source code in this document was written and tested using the PHP programmin
 
 > WordPress Install Guide: How to Install WordPress (https://developer.wordpress.org/advanced-administration/before-install/howto-install/)
 
-## 4. PHP Backtrace Sample
+## 4. DB schema
+* Related from [table_create.sql](https://github.com/sun-iron/service_boundary_analysis/blob/main/table_create.sql)
 
-## 5. Change wpdb class
+## 5. PHP Backtrace Sample
+* Related from [db_trace.php](https://github.com/sun-iron/service_boundary_analysis/blob/main/db_trace.php)
+
+## 6. Change wpdb class
+
+> ![insert new code](https://github.com/user-attachments/assets/660a2f62-7535-4eee-b718-a1bd0357da20)
+
+* changed code line is 2331~2411
+* Full source : [class-wpdb.php](https://github.com/sun-iron/service_boundary_analysis/blob/main/class-wpdb.php)
+
+## 7. Data analysis using Jupyter notebook
+
+* Need Visual studio code.
+* Related from [Backtrace_result.ipynb](https://github.com/sun-iron/service_boundary_analysis/blob/main/Backtrace_result.ipynb)
+> ![image](https://github.com/user-attachments/assets/bfacdf4a-4055-47a5-b10f-7e2d8dd0ae6f)
+
+
 
 
 
