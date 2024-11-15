@@ -41,7 +41,7 @@ define( 'ARRAY_A', 'ARRAY_A' );
 define( 'ARRAY_N', 'ARRAY_N' );
 
 // <- Begin by sunpark
-require_once 'db_trace.php';
+include_once 'db_trace.php';
 // --> End by sunpark
 
 /**
@@ -2349,18 +2349,70 @@ class wpdb {
 				$sql = $query;
 
 				switch ($i) {
-					case 0:
-					case 1:
+					case 0:		// this function.
+					case 1:		// db interface func.
 						break;
 					default:
-						func_db_tracking(compact( 'caller', 'file', 'sql' ));
+						$this->func_db_tracking(compact( 'caller', 'file', 'sql' ));
 				}
+
+				$i++;
 			}
 		}
 		// --> End by sunpark
 
 		return $return_val;
 	}
+
+	/** 
+	 * Logging data to DB or File
+  	 * Author : sunpark
+         * INPUT : array ([caller], [type], [file], [sql])
+	 * RETURN : None
+	 */
+	private function func_db_tracking($arr) {
+	        $db_trace_on = true;            // true - Turn-On, false = Turn-off
+	
+	        if ($db_trace_on == false) {    // No need backtrace
+	                return;
+	        }
+	
+	        $arr['table'] = $this->func_split_tablename( $arr['sql'] ); 
+	
+	        $format = "INSERT INTO `db_trace`(`Call_Table`, `Call_Func`, `Call_File`, `Query`) VALUES ('%s','%s','%s','%s')";
+		$new_sql = sprintf($format, $arr['table'], $arr['caller'], $arr['file'], $arr['sql']);
+
+		$this->_do_query( $new_sql );
+	}
+
+	/**
+	 * Table name split from SQL statement.
+  	 * Author : sunpark
+	 * INPUT : SQL
+	 * RETURN : Table name string or Empty string
+	 */
+	private function func_split_tablename($sql) {
+	
+	        $sql = str_replace( array( "\r\n", "\r", "\n" ), ' ', $sql );
+	        $sql = str_replace( array( "\t", '`' ), '', $sql );
+	        $sql = preg_replace( '/ +/', ' ', $sql );
+	        $sql = trim( $sql );
+	        $sql = rtrim( $sql, ';' );
+	
+	        $a_sql = explode(" ", $sql);
+	
+	        $find_table = false;
+	
+	        foreach ($a_sql as $txt) {
+	                if($find_table == true) {
+	                        return $txt;
+	                } elseif(strcasecmp($txt, "FROM") == 0) {
+	                        $find_table = true;
+	                }
+	        }
+	
+	        return "";
+	}	
 
 	/**
 	 * Internal function to perform the mysqli_query() call.
