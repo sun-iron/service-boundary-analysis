@@ -2342,9 +2342,9 @@ class wpdb {
 			
 			$i = 0;
 			foreach($back_stack as $node) {
-				$func = $node['function'];
+				$caller = $node['function'];
 				$file = $node['file'];
-				$caller = basename($node['file']);
+				$fname = basename($node['file']);
 				$line = $node['line'];
 				$sql = $query;
 
