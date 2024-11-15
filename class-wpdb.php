@@ -40,10 +40,6 @@ define( 'ARRAY_A', 'ARRAY_A' );
  */
 define( 'ARRAY_N', 'ARRAY_N' );
 
-// <- Begin by sunpark
-include_once 'db_trace.php';
-// --> End by sunpark
-
 /**
  * WordPress database access abstraction class.
  *
