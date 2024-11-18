@@ -1,4 +1,4 @@
-# Dynamic Service Boundary analysis with Backtrace
+# Dynamic Service Boundary analysis with Stack Backtrace
 This source code is data from a research paper by sunpark (sunpark@soongsil.ac.kr) titled "Automation of Domain-Based Microservice Transition from Monolithic Systems through Service Call Analysis."
 
 ## 1. What is Backtrace
