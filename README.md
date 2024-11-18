@@ -38,7 +38,13 @@ The source code in this document was written and tested using the PHP programmin
 * changed code line is 2331~2411
 * Full source : [class-wpdb.php](https://github.com/sun-iron/service_boundary_analysis/blob/main/class-wpdb.php)
 
-## 7. Data analysis using Jupyter notebook
+## 7. Data analysis by Function or Table
+
+* Need Visual studio code.
+* Related from [Backtrace_result.ipynb](https://github.com/sun-iron/service_boundary_analysis/blob/main/Backtrace_result.ipynb)
+> ![image](https://github.com/user-attachments/assets/d6e00539-e75c-4ef7-b5f4-69aed0e47b06)
+
+## 8. Data analysis using Jupyter notebook
 
 * Need Visual studio code.
 * Related from [Backtrace_result.ipynb](https://github.com/sun-iron/service_boundary_analysis/blob/main/Backtrace_result.ipynb)
